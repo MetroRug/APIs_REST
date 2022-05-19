@@ -1,8 +1,8 @@
-from rest_framework import serializer 
+from rest_framework import serializers
 from .models import Curso, Avaliacao
 
 
-class AvaliacaoSerializer(serializer.ModelSerializer):
+class AvaliacaoSerializer(serializers.ModelSerializer):
     
     class Meta:
         extra_kwargs = {
@@ -17,12 +17,12 @@ class AvaliacaoSerializer(serializer.ModelSerializer):
             'comentario',
             'avaliacao',
             'criacao', 
-            'ativo',
+            'ativo'
         )
         
         
 
-class CursoSerializer(serializer.ModelSerializer):
+class CursoSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Curso
