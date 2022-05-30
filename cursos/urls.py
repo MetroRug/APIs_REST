@@ -15,7 +15,7 @@ from .views import (
 
 router = SimpleRouter()
 router.register('cursos', CursoViewSet)
-router.register('avaliacao', AvaliacaoViewSet)
+router.register('avaliacoes', AvaliacaoViewSet)
 
 
 urlpatterns = [

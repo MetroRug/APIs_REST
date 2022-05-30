@@ -8,6 +8,10 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
+
+Token Lucas = a62b107171123fbf92446e23bb69b3f9274285b9
+Token geek = 7c9878ca25e540a6bcf56b77977141c704a3e80f
+
 """
 
 import os
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     
     'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
     
     'cursos',
 ]
@@ -130,11 +135,20 @@ MEDIA_ROOR = os.path.join(BASE_DIR, 'media')
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES':(
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 2
+    'PAGE_SIZE': 2,
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES':{
+        'anon': '5/second',
+        'user': '10/second'
+    }
 }
